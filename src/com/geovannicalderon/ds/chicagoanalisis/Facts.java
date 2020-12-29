@@ -13,8 +13,11 @@ public class Facts {
         this.getHigherPaidWorker();
         this.getHigherPaidHalfTimePosition();
         this.getAverageSalaryForPartTimeWorkers();
+        this.getFiveHigherPaidWorkers();
+        this.getJobTitleHigherAnnualSalaryAverage();
         this.higherPaidDepartment();
-        this.departmentCounter();
+
+
     }
 
     public void getHigherPaidWorker(){
@@ -67,9 +70,56 @@ public class Facts {
         System.out.println(hiherPaid.getDepartment());
     }
 
-    public void departmentCounter(){
+    public void getFiveHigherPaidWorkers(){
+        Worker higherPaid1 = workers[0]; Worker higherPaid2 = workers[0];Worker higherPaid3 = workers[0];
+        Worker higherPaid4 = workers[0];  Worker higherPaid5 = workers[0];
 
-        for (Worker department : workers)
-            System.out.println(department.getDepartment());
+        for (int index = 0; index < this.workers.length; ++index){
+            if (this.workers[index].getAnnualSalary() > higherPaid1.getAnnualSalary()){
+                higherPaid1 = this.workers[index];
+            }
+            else if (this.workers[index].getAnnualSalary() > higherPaid2.getAnnualSalary()){
+                higherPaid2 = this.workers[index];
+            }
+            else if (this.workers[index].getAnnualSalary() > higherPaid3.getAnnualSalary()){
+                higherPaid3 = this.workers[index];
+            }
+            else if (this.workers[index].getAnnualSalary() > higherPaid4.getAnnualSalary()){
+                higherPaid4 = this.workers[index];
+            }
+            else if (this.workers[index].getAnnualSalary() > higherPaid5.getAnnualSalary()){
+                higherPaid5 = this.workers[index];
+            }
+        }
+        System.out.println("Los 5 empleados con mayor ingreso anual son:");
+        System.out.println(higherPaid1.toString());
+        System.out.println(higherPaid2.toString());
+        System.out.println(higherPaid3.toString());
+        System.out.println(higherPaid4.toString());
+        System.out.println(higherPaid5.toString());
     }
+
+    public void getJobTitleHigherAnnualSalaryAverage() {
+
+        int amountOfWorkers = 0;
+        double totalAnnualSalaries = 0.0;
+
+        for (Worker worker : workers) {
+            amountOfWorkers++;
+            totalAnnualSalaries += worker.getAnnualSalary();
+        }
+
+        Worker higherPaidJobTitle = workers[0];
+        for (int index = 0; index < this.workers.length; ++index) {
+            if (this.workers[index].getAnnualSalary() > higherPaidJobTitle.getAnnualSalary()) {
+                higherPaidJobTitle = this.workers[index];
+            }
+        }
+
+        System.out.println("El puesto con mejor salario en promedio es:");
+        System.out.println(higherPaidJobTitle.toString());
+    }
+
+
+
 }
